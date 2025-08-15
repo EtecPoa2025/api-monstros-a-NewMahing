@@ -13,6 +13,24 @@
         <a href="#" id="lista" class="menu-link">lista de monstros</a>
         <a href="#" id="aleatorio" class="menu-link">monstro aleatório</a>
         <input type="text" id="filtro_by_id" placeholder="Filtrar por id do monstro" class="menu-input">
+        <section class="filtros">    
+            <select id="filtro_tipo" class="menu-input">
+                <option value="">Todos os tipos</option>
+                <option value="Lagarto Camaleão">Lagarto Camaleão</option>
+                <option value="Minotauro Peludo">Minotauro Peludo</option>
+                <option value="Lesma Burocrata">Lesma Burocrata</option>
+                <option value="Aracnídeo-Caranguejo">Aracnídeo-Caranguejo</option>
+                <option value="Ciclope Esférico">Ciclope Esférico</option>
+                <option value="Humana">Humana</option>
+             
+
+                <!-- Adicione outros tipos conforme necessário -->
+            </select>
+            <input type="number" id="filtro_vida_min" placeholder="Vida mínima" class="menu-input filtro-input" min="0">
+            <input type="number" id="filtro_vida_max" placeholder="Vida máxima" class="menu-input filtro-input" min="0">
+            <input type="text" id="filtro_texto" placeholder="Buscar por nome ou descrição" class="menu-input filtro-input">
+            <button id="btn_filtrar" class="menu-link">Filtrar</button>
+        </section>
     </nav>
     <ul id="listaMonstros">
     </ul>

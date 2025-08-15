@@ -21,7 +21,36 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             carregarMonstrosByID(e.target.value);
         }
-    })
+    });
+
+    // Filtros avançados
+    const btnFiltrar = document.querySelector('#btn_filtrar');
+    btnFiltrar.addEventListener('click', () => {
+        const tipo = document.querySelector('#filtro_tipo').value;
+        const vidaMin = document.querySelector('#filtro_vida_min').value;
+        const vidaMax = document.querySelector('#filtro_vida_max').value;
+        const texto = document.querySelector('#filtro_texto').value;
+        carregarMonstrosComFiltros(tipo, vidaMin, vidaMax, texto);
+    });
+async function carregarMonstrosComFiltros(tipo, vidaMin, vidaMax, texto) {
+    try {
+        let url = 'http://localhost:3000/monstros?';
+        const params = [];
+        if (tipo) params.push(`tipo_criatura=${encodeURIComponent(tipo)}`);
+        if (vidaMin) params.push(`pontos_vida_min=${encodeURIComponent(vidaMin)}`);
+        if (vidaMax) params.push(`pontos_vida_max=${encodeURIComponent(vidaMax)}`);
+        if (texto) params.push(`q=${encodeURIComponent(texto)}`);
+        url += params.join('&');
+
+        const response = await fetch(url);
+        const monstros = await response.json();
+        renderizaMonstros(monstros);
+    } catch (error) {
+        console.error('Erro ao carregar monstros com filtros:', error);
+        const listaMonstros = document.getElementById('listaMonstros');
+        listaMonstros.textContent = 'Não foi possível carregar os monstros filtrados.';
+    }
+}
 });
 
 

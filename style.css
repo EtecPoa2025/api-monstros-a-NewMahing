@@ -3,26 +3,27 @@
     width: 100%;
     background: #141313a8;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    padding: 12px 0 8px 0;
-    display: flex;
-    justify-content: flex-end;
+    padding: 5px 0;
+    display: inline-flex;
     align-items: center;
-    position: sticky;
     top: 0;
     z-index: 10;
+    /* gap: 1px; */
 }
 
 .menu-title {
+    margin: 8px 30px;
+    text-align: center;
+    background: none;
+    padding: 0;
     color: #ff0000;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
-    margin-right: auto;
-    margin-left: 32px;
-    padding: 6px 18px;
     border-radius: 5px;
 }
+
 .menu-title:hover{
-        background: rgb(94, 23, 23);
+    background: rgb(94, 23, 23);
     color: #000000;
 }
 
@@ -30,28 +31,64 @@
     color: #ff0000;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.1rem;
-    margin-right: 32px;
-    padding: 6px 18px;
-    border-radius: 5px;
+    font-size: 1rem;
+    margin: 0 8px;
+    padding: 8px 20px;
+    border-radius: 6px;
+    background: #3a3a5a;
     transition: background 0.2s, color 0.2s;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
 }
 
+.filtros{
+    display: inline-block;
+    width: 50%;
+    padding-left: 30px;
+}
+
+
 .menu-input {
-    padding: 6px 12px;
-    border: none;
+    padding: 7px 12px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1rem;
-    margin-right: 32px;
+    font-size: 0.8rem;
+    margin: 0 8px 0 0;
     background: #fff;
     color: #333;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    width:14%;
 }
 .menu-input:focus {
     outline: none;
     background: #e0e0e0;
+    border: 1.5px solid #447;
+}
+/* Agrupamento dos filtros */
+.menu-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+.menu-filtros > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 140px;
+}
+.menu-filtros label {
+    font-size: 0.95rem;
+    color: #eee;
+    margin-bottom: 4px;
+    margin-left: 2px;
 }
 .menu-link:hover {
+
+    box-shadow: 0 2px 8px #0002;
     background: rgb(94, 23, 23);
     color: #000000;
 }
@@ -75,7 +112,7 @@ h1 {
     list-style: none;
     padding: 0;
     max-width: 80%;
-    margin: 40px auto 0 auto;
+    margin: 40px a uto 0 auto;
     background: #141313a8;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);

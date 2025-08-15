@@ -1,22 +1,26 @@
+
 # Filtros de Dados
 
-Para rotas do tipo GET existem regras e boas práticas para filtrar dados atráves da URL. Iremos abordar como selecionar um dado especifico e como utilizar "QueryString" para filtrar dados.
+Este guia apresenta as principais formas de filtrar dados em rotas GET de uma API REST, utilizando parâmetros na URL (Query String).
 
-### Selecionando por ID do registro
+---
 
-É possivel selecionar por ID um registro, basta informar o ID do registro após o nome do recurso consultado.
+## 1. Seleção por ID
 
-Exemplo:
+Permite buscar um registro específico pelo seu ID.
 
-GET `/monstros/1`
+**Exemplo:**
 
-**Retorna:**
+```http
+GET /monstros/1
+```
 
-```javascript
+**Retorno:**
+```json
 {
     "id": 1,
     "nome": "James P. Sullivan",
-    "descricao": "Monstro gigante similar a um minotauro peludo com dois chifres na cabeça. Ele tem imensa massa de gordura e pelos azulados com manchas púrpuras. Seus pés e mãos possuem pequenas garras além de dentes afiados escondidos dentro da boca. Seu rabo é grosso e pontudo igual ao de um dinossauro. Ele mede 2,28 m e pesa 360 kg.",
+    "descricao": "Monstro gigante similar a um minotauro peludo...",
     "tipo_criatura": "Minotauro Peludo",
     "pontos_vida": 15,
     "ataque": 1,
@@ -25,64 +29,75 @@ GET `/monstros/1`
 }
 ```
 
-### 2. Filtro de dados na URL (Query String)
+---
 
-A capacidade de filtrar dados diretamente na URL é uma das características mais poderosas das APIs REST, pois permite que o front-end ou qualquer outra aplicação consuma apenas o que é necessário. Isso otimiza o desempenho e a flexibilidade.
+## 2. Filtros via Query String
 
-Os filtros na URL são geralmente implementados através dos parâmetros de consulta (Query Parameters). Eles são a parte da URL que vem depois do ponto de interrogação (?).
+Os filtros podem ser combinados e aplicados diretamente na URL, após o símbolo `?`.
 
-#### Filtros por Propriedade Específica
+### Principais tipos de filtros:
 
-Este filtro permite buscar recursos com base em um valor exato de uma de suas propriedades.
+<details>
+<summary><strong>Por propriedade específica</strong></summary>
 
-Sintaxe: `?nome_da_propriedade=valor`
+Busca por valor exato de uma propriedade.
 
-Exemplo: `GET /monstros?tipo_criatura=Besta`
+<br>
+<strong>Sintaxe:</strong>
+```http
+GET /monstros?tipo_criatura=Besta
+```
+<strong>Retorno:</strong> Todos os monstros cujo tipo de criatura seja "Besta".
+</details>
 
-(Retorna todos os monstros cujo tipo de criatura seja "Besta").
+<details>
+<summary><strong>Por intervalo (range)</strong></summary>
 
-#### Filtros de Intervalo (Range Filters)
+Ideal para propriedades numéricas ou datas.
 
-Estes filtros são ideais para propriedades numéricas ou de data. Eles permitem buscar recursos dentro de um intervalo de valores.
-
-Sintaxe: Geralmente usamos parâmetros com sufixos _min ou _max.
-
-Exemplo na API de Monstros:
-
+<br>
+<strong>Sintaxe:</strong>
+```http
 GET /monstros?pontos_vida_min=50&pontos_vida_max=150
+```
+<strong>Retorno:</strong> Monstros com pontos de vida entre 50 e 150.
+</details>
 
-(Retorna monstros com pontos de vida entre 50 e 150).
+<details>
+<summary><strong>Busca por texto</strong></summary>
 
-#### Filtros de Busca por Texto
+Busca por palavra-chave no nome ou descrição.
 
-Este filtro busca recursos que contenham uma determinada palavra-chave em uma ou mais propriedades de texto (como nome ou descricao).
-
-Sintaxe: ?busca=palavra_chave ou ?q=palavra_chave
-
-Exemplo na API de Monstros:
-
+<br>
+<strong>Sintaxe:</strong>
+```http
 GET /monstros?busca=fogo
+GET /monstros?q=fogo
+```
+<strong>Retorno:</strong> Monstros cujo nome ou descrição contenha a palavra "fogo".
+</details>
 
-(Retorna monstros cujo nome ou descrição contenha a palavra "fogo", como "Dragão Vermelho").
+<details>
+<summary><strong>Ordenação (sorting)</strong></summary>
 
-#### Filtros de Ordenação (Sorting)
-A ordenação permite que o cliente da API defina a ordem em que os resultados devem ser retornados.
+Define a ordem dos resultados.
 
-Sintaxe: ?ordenar_por=nome_da_propriedade&direcao=asc ou direcao=desc. A direção é opcional, sendo asc (ascendente) o padrão.
-
-Exemplo na API de Monstros:
-
+<br>
+<strong>Sintaxe:</strong>
+```http
 GET /monstros?ordenar_por=ataque&direcao=desc
+```
+<strong>Retorno:</strong> Lista de monstros ordenada pelo ataque, do mais forte para o mais fraco.
+</details>
 
-(Retorna a lista de monstros ordenada pelo ataque, do mais forte para o mais fraco).
+---
 
+## 3. Combinação de filtros
 
-#### Como Combina-los?
+Os filtros podem ser combinados usando o caractere `&`.
 
-O grande poder dos filtros de URL é que eles podem ser combinados uns com os outros usando o caractere &.
-
-Exemplo Combinado na API de Monstros:
-
+**Exemplo combinado:**
+```http
 GET /monstros?tipo_criatura=Besta&pontos_vida_min=50&ordenar_por=ataque&direcao=desc
-
-(Retorna todas as "Bestas" com mais de 50 pontos de vida, ordenadas do ataque mais forte para o mais fraco).
+```
+Retorna todas as "Bestas" com mais de 50 pontos de vida, ordenadas do ataque mais forte para o mais fraco.
