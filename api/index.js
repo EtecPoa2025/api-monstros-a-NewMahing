@@ -21,9 +21,36 @@ const monstros = require('./monstros.json');
 // Quando alguém fizer uma requisição GET para a URL base + '/monstros'
 // (ex: http://localhost:3000/monstros), esta função será executada.
 app.get('/monstros', (req, res) => {
-    // Retorna a array de monstros como uma resposta JSON
-    res.json(monstros);
-});
+    const tipoCriatura = req.query.tipo_criatura;
+    const pontosVidaMin = req.query.pontos_vida_min;
+    const pontosVidaMax = req.query.pontos_vida_max;
+    const buscaTexto = req.query.busca_texto;
+
+    let resultado = monstros;
+
+    if (tipoCriatura) {
+        resultado = resultado.filter(m => m.tipo_criatura = tipoCriatura);
+    }
+
+    else if (pontosVidaMin) {
+        resultado = resultado.filter(m => m.pontos_vida < Number (pontosVidaMin)); 
+    }
+
+    else if (pontosVidaMax) {
+        resultado = resultado.filter(m => m.pontos_vida > Number (pontosVidaMax));
+    }
+
+    if (buscaTexto) {
+       const texto = buscaTexto.toLowercCase();
+       resultado = resultado.filter(m=> m.nome && m.nome.toLowerCase().includes (texto)) || 
+       (m.descricao && m.descricao.toLowerCase().includes(texto))
+        
+    };
+
+    
+
+res.json(resultado);
+    });
 
 
 //GRUPO SCP
