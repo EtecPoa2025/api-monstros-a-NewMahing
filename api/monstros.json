@@ -12,9 +12,9 @@
     },
     {
         "id": 2,
-        "nome": "Dragão Vermelho",
+        "nome": "SCP 1471",
         "imagem": "https://uploads.spiritfanfiction.com/historias/capitulos/201812/fundacao-scp-15177459-171220181231.jpg",
-        "descricao": "Uma fera colossal que cospe fogo, temida por reinos.",
+        "descricao": "SCP-1471 é um aplicativo gratuito de 9,8MB para dispositivos móveis chamado 'MalO ver1.0.0' nas lojas de aplicativos online. SCP-1471 não tem um desenvolvedor listado e, de alguma forma, é capaz de ignorar o processo de aprovação do aplicativo para acessar diretamente a distribuição. SCP-1471 também é capaz de evitar a remoção por outros aplicativos de gerenciamento de programas.",
         "tipo_criatura": "Besta",
         "pontos_vida": 200,
         "ataque": 50,
@@ -23,8 +23,8 @@
     },
     {
         "id": 3,
-        "nome": "Esqueleto",
-        "imagem": "https://cdn.pixabay.com/photo/2023/05/06/12/30/death-7974213_640.jpg",
+        "nome": "Siren Head",
+        "imagem": "https://i.scdn.co/image/ab67616d0000b273e052a5aac5663d2432078b22",
         "descricao": "Restos animados de guerreiros caídos, empunham espadas enferrujadas.",
         "tipo_criatura": "Morto-vivo",
         "pontos_vida": 15,
