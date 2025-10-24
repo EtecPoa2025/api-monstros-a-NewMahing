@@ -47,8 +47,6 @@ app.get('/monstros', (req, res) => {
         
     };
 
-    
-
 res.json(resultado);
     });
 
@@ -65,6 +63,19 @@ if (monstros.length > 0) {
        
 }
 });
+
+//filtro id
+app.get('/monstros/:monstro_id', (req, res) => {
+    let id = req.params.monstro_id;
+    let monstro = monstros.find(m => m.id == id);
+
+    if (monstro) {
+        res.json(monstro);
+    } else {
+        res.status(404).json({ erro: 'Nenhum monstro encontrado.' });
+    }
+});
+
 
 // --- Iniciar o Servidor ---
 
