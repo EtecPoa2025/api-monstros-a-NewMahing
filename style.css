@@ -35,7 +35,7 @@
     margin: 0 8px;
     padding: 8px 20px;
     border-radius: 6px;
-    background: #3a3a5a;
+    background: #5f0a0a;
     transition: background 0.2s, color 0.2s;
     display: inline-block;
     border: none;
@@ -63,7 +63,7 @@
 .menu-input:focus {
     outline: none;
     background: #e0e0e0;
-    border: 1.5px solid #447;
+    border: 1.5px solid rgb(138, 27, 27);
 }
 /* Agrupamento dos filtros */
 .menu-filtros {
