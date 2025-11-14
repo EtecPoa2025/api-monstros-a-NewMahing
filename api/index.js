@@ -36,7 +36,7 @@ app.get('/monstros', (req, res) => {
     const pontosVidaMax = req.query.pontos_vida_max;
     const buscaTexto = req.query.busca_texto;
 
-    let resultado = getAllMonstros;
+    let resultado = getAllMonstros();
 
     if (tipoCriatura) {
         resultado = resultado.filter(m => m.tipo_criatura = tipoCriatura);
