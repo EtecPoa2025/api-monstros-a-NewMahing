@@ -91,7 +91,7 @@ app.get('/monstros/:monstros_id', (req, res) => {
 app.post('/monstros', (req, res)=> {
     const corpo = req.body;
     const novo_monstro = insertMonstro(corpo);
-    return res.status(201).json(novo_monstro)
+    return res.status(201).json(novo_monstro);
 });
 
 
@@ -106,9 +106,9 @@ function getMonstrosById(id){
     return resultado.get(id);
 }
 
-function insertMonstro(monstro) {
+function insertMonstro(monstros) {
     const resultado = db.prepare(`
-        INSERT INDO monstros(
+        INSERT INTO monstros (
             nome,
             imagem,
             descricao,
@@ -118,8 +118,7 @@ function insertMonstro(monstro) {
             defesa,
             habitat
         )
-        
-        VALUES (@nome, @image, @descricao, @tipo_criatura, @pontos_vida, @ataque, @defesa, @habitat)
+            VALUES (@nome, @imagem, @descricao, @tipo_criatura, @pontos_vida, @ataque, @defesa, @habitat)
         `)
     const novo = resultado.run(
         {
