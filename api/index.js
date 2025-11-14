@@ -13,6 +13,7 @@ const db = new Database(DB_FILE);
 // 2. Criar uma instância do aplicativo Express
 const app = express();
 app.use(cors({ origin: '*' }));
+app.use(express.json());
 
 // 3. Definir a porta em que o servidor irá escutar
 // Usamos process.env.PORT para compatibilidade com ambientes de hospedagem (como Heroku)
@@ -122,14 +123,14 @@ function insertMonstro(monstros) {
         `)
     const novo = resultado.run(
         {
-            nome: monstro.nome,
-            imagem: monstro.imagem,
-            descricao: monstro.descricao,
-            tipo_criatura: monstro.tipo_criatura,
-            pontos_vida: monstro.pontos_vida,
-            ataque: monstro.ataque, 
-            defesa: monstro.defesa,
-            habitat: monstro.habitat
+            nome: monstros.nome,
+            imagem: monstros.imagem,
+            descricao: monstros.descricao,
+            tipo_criatura: monstros.tipo_criatura,
+            pontos_vida: monstros.pontos_vida,
+            ataque: monstros.ataque, 
+            defesa: monstros.defesa,
+            habitat: monstros.habitat
         }
     )
     return getMonstrosById(novo.lastInsertRowid)
