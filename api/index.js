@@ -107,7 +107,7 @@ function getMonstrosById(id){
     return resultado.get(id);
 }
 
-function insertMonstro(monstros) {
+function insertMonstro(monstro) {
     const resultado = db.prepare(`
         INSERT INTO monstros (
             nome,
@@ -123,14 +123,14 @@ function insertMonstro(monstros) {
         `)
     const novo = resultado.run(
         {
-            nome: monstros.nome,
-            imagem: monstros.imagem,
-            descricao: monstros.descricao,
-            tipo_criatura: monstros.tipo_criatura,
-            pontos_vida: monstros.pontos_vida,
-            ataque: monstros.ataque, 
-            defesa: monstros.defesa,
-            habitat: monstros.habitat
+            nome: monstro.nome,
+            imagem: monstro.imagem,
+            descricao: monstro.descricao,
+            tipo_criatura: monstro.tipo_criatura,
+            pontos_vida: monstro.pontos_vida,
+            ataque: monstro.ataque, 
+            defesa: monstro.defesa,
+            habitat: monstro.habitat
         }
     )
     return getMonstrosById(novo.lastInsertRowid)
